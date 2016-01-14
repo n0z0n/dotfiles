@@ -1,0 +1,195 @@
+## This file is free software; you can redistribute it and/or
+## modify it under the terms of the GNU General Public License as
+## published by the Free Software Foundation; either version 2 of
+## the License, or (at your option) any later version.
+##
+## This file is distributed in the hope that it will be
+## useful, but WITHOUT ANY WARRANTY; without even the implied
+## warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+## PURPOSE.  See the GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public
+## License along with this file; if not, write to the Free
+## Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+## MA 02111-1307, USA.
+
+# --------------------------------------------------------------------
+# Looks
+
+# Colours (#RRGGBB, rgb:RR/GG/BB)
+ForegroundColour=
+BackgroundColour=
+CursorColour=
+IMECursorColour=
+
+# Transparency (off, low, medium, high, glass)
+Transparency=off
+
+# Opaque when focused (yes, no)
+OpaqueWhenFocused=no
+
+# Cursor (line, block, underscore)
+CursorType=block
+
+# Cursor blink (yes, no)
+CursorBlinks=no
+
+# --------------------------------------------------------------------
+# Text
+
+# Font selection
+Font=Migu 1M
+FontIsBold=no
+FontHeight=11
+
+# Show bold as font (yes, no)
+BoldAsFont=no
+
+# Show bold as colour (yes, no)
+BoldAsColour=yes
+
+# Allow blinking (yes, no)
+AllowBlinking=yes
+
+# Font smoothing (default, none, partial, full)
+FontSmoothing=Partial
+
+# Locale
+Locale=ja_JP
+
+# Character set 
+Charset=utf8
+
+# --------------------------------------------------------------------
+# Keys
+
+# Backspace sends ^H (yes, no)
+BackspaceSendsBS=no
+
+# Ctrl+LeftAlt is AltGr (yes, no)
+CtrlAltIsAltGr=no
+
+# Copy and Paste shortcuts (yes, no)
+ClipShortcuts=yes
+
+# Menu and Full Screen shortcuts (yes, no)
+WindowShortcuts=yes
+
+# Switch window shortcuts (yes, no)
+SwitchShortcuts=yes
+
+# Zoom shortcuts (yes, no)
+ZoomShortcuts=yes
+
+# Alt+Fn shortcuts (yes, no)
+AltFnShortcuts=yes
+
+# Ctrl+Shift+letter shortcuts (yes, no)
+CtrlShiftShortcuts=yes
+
+# --------------------------------------------------------------------
+# Mouse
+
+# Copy on select (yes, no)
+CopyOnSelect=yes
+
+# Copy as rich text (yes, no)
+CopyAsRTF=yes
+
+# Clicks place command line cursor (yes, no)
+ClicksPlaceCursor=no
+
+# Right click action (paste, extend, menu)
+RightClickAction=paste
+
+# Default click target (yes, no)
+ClicksTargetApp=no
+
+# Modifier key for overriding default (shift, ctrl, slt, off)
+ClickTargetMod=shift
+
+# --------------------------------------------------------------------
+# Window
+
+# Columns
+Columns=
+
+# Rows
+Rows=
+
+# Scrollback lines
+ScrollbackLines=10000
+
+# Scrollbar (left, none, right)
+Scrollbar=right
+
+# Modifier for scrolling (shift, ctrl, alt, off)
+ScrollMod=shift
+
+# PgUp and PgDn scroll without modifier (yes, no)
+PgUpDnScroll=no
+
+# --------------------------------------------------------------------
+# Terminal
+
+# Type (xterm, xterm-256color, xterm-vt220, vt220, vt100)
+Term=xterm-256color
+
+# Answerback
+Answerback=
+
+# Bell
+BellSound=no
+BellFlash=no
+BellTaskbar=yes
+
+# Printer
+Printer=
+
+# Prompt about running processes on close (yes, no)
+ConfirmExit=yes
+
+# --------------------------------------------------------------------
+# Command line
+
+# Holding the window open (never, start, error, always)
+Hold=never
+
+# Window icon
+Icon=
+
+# Log file
+Log=
+
+# Window title
+Title=
+
+# Utmp record (yes, no)
+Utmp=no
+
+# Initial window state (normal, min, max, full, hide)
+Window=normal
+
+# Window position
+X=
+Y=
+
+# Window class name
+Class=mintty
+
+# --------------------------------------------------------------------
+# Hidden settings
+ 
+# Application ID
+AppID=Mintty
+
+# Word selection characters
+WordChars=
+
+# Use system colours (yes, no)
+UseSystemColours=no
+
+## Local Variables:
+## coding: utf-8
+## mode: conf
+## End

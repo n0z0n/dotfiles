@@ -1,0 +1,20 @@
+echo -ne   '\eP\e]10;#cccccc\a'  # Foreground   -> base0
+echo -ne   '\eP\e]11;#262626\a'  # Background   -> base03
+echo -ne   '\eP\e]12;#a65353\a'  # Cursor       -> red
+echo -ne  '\eP\e]4;0;#0d0d0d\a'  # black        -> Base02
+echo -ne  '\eP\e]4;8;#262626\a'  # bold black   -> Base03
+echo -ne  '\eP\e]4;1;#a65353\a'  # red          -> red
+echo -ne  '\eP\e]4;9;#cc6666\a'  # bold red     -> orange
+echo -ne  '\eP\e]4;2;#53a653\a'  # green        -> green
+echo -ne '\eP\e]4;10;#66cc66\a'  # bold green   -> base01 *
+echo -ne  '\eP\e]4;3;#98a653\a'  # yellow       -> yellow
+echo -ne '\eP\e]4;11;#bbcc66\a'  # bold yellow  -> base00 *
+echo -ne  '\eP\e]4;4;#5353a6\a'  # blue         -> blue
+echo -ne '\eP\e]4;12;#6666cc\a'  # bold blue    -> base0 *
+echo -ne  '\eP\e]4;5;#a653a6\a'  # magenta      -> magenta
+echo -ne '\eP\e]4;13;#cc66cc\a'  # bold magenta -> violet
+echo -ne  '\eP\e]4;6;#538aa6\a'  # cyan         -> cyan
+echo -ne '\eP\e]4;14;#66aacc\a'  # bold cyan    -> base1 *
+echo -ne  '\eP\e]4;7;#808080\a'  # white        -> Base2
+echo -ne '\eP\e]4;15;#bcbcbc\a'  # bold white   -> Base3
+

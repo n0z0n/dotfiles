@@ -214,15 +214,15 @@
      case $TERM in
          xterm*)
                export LS_COLORS='no=00:fi=00:di=01;35:ln=01;36:pi=40;33:so=01;32:do=01;32:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.svgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.xz=01;31:';
-               alias ls='env LC_COLLATE=en_US.utf8 ls -A -F --show-control-char -x --color=always'
+               alias ls='env LC_COLLATE=en_US.utf8 ls -F --show-control-char -x --color=always'
                ;;
          emacs)
                export LS_COLORS='no=00:fi=00:di=35:ln=36:ex=32'
-               alias ls='env LC_COLLATE=en_US.utf8 ls -A -F --show-control-char -x --color'
+               alias ls='env LC_COLLATE=en_US.utf8 ls -F --show-control-char -x --color'
                ;;
          dumb|*)
                export LS_COLORS=
-               alias ls='env LC_COLLATE=en_US.utf8 ls -A -F --show-control-char -x'
+               alias ls='env LC_COLLATE=en_US.utf8 ls -F --show-control-char -x'
                ;;
      esac
      alias ll='ls -l --time-style=long-iso'
@@ -272,6 +272,8 @@
      alias taskkill='cocot taskkill'
      alias xcopy='cocot xcopy'
      alias attrib='cocot attrib'
+   # lv
+     alias lv='TERM=cygwin lv -Ou8c'
 
 
 ## ####################################################################

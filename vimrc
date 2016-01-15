@@ -5,6 +5,10 @@ set noerrorbells
 set visualbell
 set viminfo=
 
-syntax enable
-colorscheme slate
+if filereadable(expand("~/.vim/.vimrc.neobundle"))
+  source ~/.vim/.vimrc.neobundle
+endif
 
+syntax enable
+set background=dark
+colorscheme solarized

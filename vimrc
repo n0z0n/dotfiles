@@ -5,8 +5,8 @@ set noerrorbells
 set visualbell
 set viminfo=
 
-if filereadable(expand("~/.vim/.vimrc.neobundle"))
-  source ~/.vim/.vimrc.neobundle
+if filereadable(expand("~/.vim/vimrc.neobundle"))
+  source ~/.vim/vimrc.neobundle
 endif
 
 syntax enable

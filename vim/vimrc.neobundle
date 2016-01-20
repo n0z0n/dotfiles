@@ -24,6 +24,9 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'editorconfig/editorconfig-vim'
 
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'justmao945/vim-clang'
+
 " Required:
 call neobundle#end()
 

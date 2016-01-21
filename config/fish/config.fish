@@ -15,3 +15,5 @@ set -gx GOPATH $HOME
 
 set LANGUAGE ja_JP
 set LANG ja_JP.UTF-8
+
+set -gx EDITOR vim

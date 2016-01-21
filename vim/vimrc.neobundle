@@ -16,16 +16,17 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'editorconfig/editorconfig-vim'
-
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'justmao945/vim-clang'
+
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'flazz/vim-colorschemes'
+
 
 " Required:
 call neobundle#end()

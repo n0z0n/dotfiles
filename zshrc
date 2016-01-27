@@ -92,3 +92,6 @@ export GOPATH=$HOME
 export LANGUAGE=ja_JP
 export LANG=ja_JP.UTF-8
 export EDITOR=vim
+
+
+alias vim="vim -p"

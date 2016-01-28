@@ -1,1 +1,2 @@
 DOTFILES_DIRS=~/.dotfiles
+EXCLUDES="Makefile README.* img* *.bz2"

@@ -154,4 +154,4 @@ zle -N peco-z-search
 bindkey '^f' peco-z-search
 
 
-
+eval `dircolors .dircolors-solarized/dircolors.256dark`

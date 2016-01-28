@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode git-flow)
+plugins=(z git vi-mode git-flow)
 
 # User configuration
 
@@ -133,7 +133,6 @@ SAVEHIST=1000000
 # sudo の後ろでコマンド名を補完する
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                         /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-source ~/src/github.com/rupa/z/z.sh
 
 function peco-z-search
 {
@@ -155,3 +154,4 @@ bindkey '^f' peco-z-search
 
 
 eval `dircolors ~/.dircolors-solarized/dircolors.256dark`
+

@@ -30,6 +30,8 @@ NeoBundle 'vim-scripts/Align'
 " NeoBundle 'flazz/vim-colorschemes'
 " NeoBundle 'justmao945/vim-clang'
 " NeoBundle 'tpope/vim-fugitive'
+"
+NeoBundle 'yuratomo/w3m.vim'
 
 " Required:
 call neobundle#end()

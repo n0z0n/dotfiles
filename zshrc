@@ -133,3 +133,25 @@ SAVEHIST=1000000
 # sudo の後ろでコマンド名を補完する
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                         /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+source ~/src/github.com/rupa/z/z.sh
+
+function peco-z-search
+{
+    which peco z > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Please install peco and z"
+        return 1
+    fi
+    local res=$(z | sort -rn | cut -c 12- | peco)
+    if [ -n "$res" ]; then
+        BUFFER+="cd $res"
+        zle accept-line
+    else
+        return 1
+    fi
+}
+zle -N peco-z-search
+bindkey '^f' peco-z-search
+
+
+

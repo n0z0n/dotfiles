@@ -1,0 +1,3 @@
+#!/bin/sh
+
+grep "Command" /var/log/apt/history.log | grep -o "install.*"

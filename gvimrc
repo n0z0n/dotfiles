@@ -18,3 +18,7 @@ inoremap <silent> <ESC> <ESC>
 " setting Font"
 set guifont=Migu_1M:h11
 
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
+

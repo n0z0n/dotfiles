@@ -31,8 +31,6 @@ set smartcase                                                  " ただし大文
 colorscheme solarized                                          " カラースキーマ
 set background=dark                                            " 背景
 set laststatus=2                                               " statusを常に表示
-set list                                                       " 不可視文字を表示
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲ " 不可視文字を表示
 set matchpairs& matchpairs+=<:>                                " 対応括弧に<と>のペアを追加
 set matchtime=3                                                " 対応括弧の表示秒数を3秒にする
 set number                                                     " 行番号を表示
@@ -42,6 +40,12 @@ set showcmd                                                    " コマンドを
 set showmatch                                                  " 対応括弧をハイライト表示する
 set wrap                                                       " ウィンドウの幅より長い行は折り返され、次の行に続けて表示される
 syntax on                                                      " シンタックスハイライト
+
+
+set list                                                       " 不可視文字を表示
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲ " 不可視文字を表示
+hi SpecialKey ctermfg=232 ctermbg=NONE guifg=LightGrey guibg=DarkGrey
+hi NonText ctermfg=232 ctermbg=NONE guifg=LightGrey guibg=DarkGrey
 
 " その他
 " set infercase                                                  " 補完の際の大文字小文字の区別しない

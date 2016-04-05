@@ -27,10 +27,6 @@
    # 新規ファイルの権限を設定
      umask 022
 
-   # スクリプト中の CRを無視
-     set -o igncr
-
-
 ## ####################################################################
 ## @ コマンド補完
 
@@ -117,7 +113,7 @@
      case $TERM in
          xterm*|emacs)
              PS1="\$(
-                 retv=\$?    
+                 retv=\$?
                  fg=\$(test \$retv -eq 0 && echo \"\[\e[0m\e[0;32m\]\" || echo \"\[\e[0m\e[0;33m\]\")
                  bg=\$(test \$retv -eq 0 && echo \"\[\e[0;32;42m\]\"   || echo \"\[\e[0;33;43m\]\")
                  echo
@@ -188,7 +184,7 @@
      export LESS_TERMCAP_se LESS_TERMCAP_so
      LESS_TERMCAP_so=$'\e[1;44m'    # begin standout-mode - info box
      LESS_TERMCAP_se=$'\e[0m'       # end standout-mode
- 
+
    # 配色（アンダーライン）
      export LESS_TERMCAP_ue LESS_TERMCAP_us
      LESS_TERMCAP_us=$'\e[4;33m'    # begin underline

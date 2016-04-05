@@ -16,7 +16,7 @@ set iminsert=0 imsearch=0
 inoremap <silent> <ESC> <ESC>
 
 " setting Font"
-set guifont=Migu_1M:h11
+set guifont=Migu_1M:h15
 
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8

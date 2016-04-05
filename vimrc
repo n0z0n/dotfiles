@@ -13,9 +13,10 @@ if filereadable(expand("~/.vim/vimrc.neobundle"))
 endif
 
 " ファイル関連
-set encoding=utf8                                              " エンコード
+set encoding=utf-8                                              " エンコード
 set fileencoding=utf-8                                         " ファイルエンコード
-set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
+set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-2,euc-jp,sjis
+set termencoding=utf-8
 set nobackup                                                   " バックアップをしない
 set noswapfile                                                 " .swapファイルを作らない
 set nowritebackup                                              " バックアップファイルを作らない

@@ -1,3 +1,6 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = http://github.com/seebi/dircolors-solarized
+[submodule "zprezto"]
+	path = zprezto
+	url = https://github.com/sorin-ionescu/prezto.git

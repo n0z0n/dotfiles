@@ -1,3 +1,4 @@
-DOTFILES_DIRS=~/.dotfiles
-EXCLUDES="Makefile README.* img* *.bz2 list"
+EXCLUDES="*:dircolors-solarized Makefile"
+SYMLINK_DIRS="zprezto config"
+
 

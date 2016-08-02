@@ -19,3 +19,7 @@ export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+export EDITOR=vim
+export VISUAL=vim
+
+alias vim="vim -p"

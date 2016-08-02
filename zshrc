@@ -11,3 +11,11 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+export PATH=/usr/local/bin:${PATH}
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+
+export MANPATH=/usr/local/share/man:${MANPATH}
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+

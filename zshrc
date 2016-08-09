@@ -11,9 +11,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-export PATH=/usr/local/bin:${PATH}
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-
+# typeset -U path PATH manpath MANPATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 export MANPATH=/usr/local/share/man:${MANPATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 
@@ -23,3 +22,59 @@ export EDITOR=vim
 export VISUAL=vim
 
 alias vim="vim -p"
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | eval $tac | awk '!a[$0]++' | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+function peco-src () {
+    local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
+# alias a='fasd -a'        # any
+# alias s='fasd -si'       # show / search / select
+# alias d='fasd -d'        # directory
+# alias f='fasd -f'        # file
+# alias sd='fasd -sid'     # interactive directory selection
+# alias sf='fasd -sif'     # interactive file selection
+# alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+# alias zz='fasd_cd -d -i' # cd with interactive selection
+
+
+function peco-fasd-search
+{
+    which peco fasd > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Please install peco and fasd"
+        return 1
+    fi
+    local res=$(fasd | sort -rn | cut -c 12- | peco)
+    if [ -n "$res" ]; then
+        BUFFER+=" $res"
+        zle accept-line
+    else
+        return 1
+    fi
+}
+zle -N peco-fasd-search
+bindkey '^f' peco-fasd-search
+
+export HISTSIZE=1000000
+export SAVEHIST=1000000

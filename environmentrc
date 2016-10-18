@@ -1,0 +1,25 @@
+export PATH=${PATH}:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export MANPATH=/usr/local/share/man:${MANPATH}
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export EDITOR=vim
+export VISUAL=vim
+
+alias vim="vim -p"
+
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+case ${OSTYPE} in
+    darwin*)
+        #ここにMac向けの設定
+        ;;
+    linux*)
+        #ここにLinux向けの設定
+        ;;
+    cygwin*)
+        export TMUX_TMPDIR=/var/tmp/
+        ;;
+esac

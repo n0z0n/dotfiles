@@ -10,18 +10,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-# typeset -U path PATH manpath MANPATH
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-export MANPATH=/usr/local/share/man:${MANPATH}
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-export EDITOR=vim
-export VISUAL=vim
-
-alias vim="vim -p"
+if [ -f .environmentrc ];then
+    . ~/.environmentrc
+fi
+if [ -f .proxyrc ];then
+    . ~/.proxyrc
+fi
 
 function peco-select-history() {
     local tac
@@ -76,5 +70,3 @@ function peco-fasd-search
 zle -N peco-fasd-search
 bindkey '^f' peco-fasd-search
 
-export HISTSIZE=1000000
-export SAVEHIST=1000000

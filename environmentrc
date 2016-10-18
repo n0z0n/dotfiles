@@ -11,15 +11,17 @@ alias vim="vim -p"
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
+export LV=-c
 
 case ${OSTYPE} in
     darwin*)
-        #ここにMac向けの設定
+        # For Mac
         ;;
     linux*)
-        #ここにLinux向けの設定
+        # For Linux
         ;;
     cygwin*)
+        # For cygwin
         export TMUX_TMPDIR=/var/tmp/
         ;;
 esac

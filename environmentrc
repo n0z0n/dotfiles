@@ -12,6 +12,9 @@ alias vim="vim -p"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export LV=-c
+export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
+export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+export LESSOPEN='| ~/.hilite %s'
 
 case ${OSTYPE} in
     darwin*)

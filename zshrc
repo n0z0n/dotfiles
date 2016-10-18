@@ -51,7 +51,6 @@ bindkey '^]' peco-src
 # alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 # alias zz='fasd_cd -d -i' # cd with interactive selection
 
-
 function peco-fasd-search
 {
     which peco fasd > /dev/null
@@ -69,4 +68,6 @@ function peco-fasd-search
 }
 zle -N peco-fasd-search
 bindkey '^f' peco-fasd-search
+
+function lv() { if [ -f $1 ]; then less $1 | /usr/local/bin/lv -c; fi;  }
 

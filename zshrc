@@ -69,5 +69,3 @@ function peco-fasd-search
 zle -N peco-fasd-search
 bindkey '^f' peco-fasd-search
 
-function lv() { if [ -f $1 ]; then less $1 | /usr/local/bin/lv -c; fi;  }
-

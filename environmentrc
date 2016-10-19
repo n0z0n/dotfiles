@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export PATH=${PATH}:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 export MANPATH=/usr/local/share/man:${MANPATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
@@ -11,6 +13,8 @@ alias vim="vim -p"
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
+export HISTFILE=${HOME}/.history
+
 
 ## ####################################################################
 ## @ less

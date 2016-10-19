@@ -17,6 +17,15 @@ if [ -f .proxyrc ];then
     . ~/.proxyrc
 fi
 
+function register-function-if-exist-peco() {
+    bind=$1
+    func=$2
+
+    if which peco > /dev/null; then
+        bindkey ${bind} ${func}
+    fi
+}
+
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -29,7 +38,7 @@ function peco-select-history() {
     zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+register-function-if-exist-peco '^r' peco-select-history
 
 function peco-src () {
     local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
@@ -40,7 +49,7 @@ function peco-src () {
     zle clear-screen
 }
 zle -N peco-src
-bindkey '^]' peco-src
+register-function-if-exist-peco '^]' peco-src
 
 # alias a='fasd -a'        # any
 # alias s='fasd -si'       # show / search / select
@@ -67,5 +76,5 @@ function peco-fasd-search
     fi
 }
 zle -N peco-fasd-search
-bindkey '^f' peco-fasd-search
+register-function-if-exist-peco '^f' peco-fasd-search
 

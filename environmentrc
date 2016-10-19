@@ -11,8 +11,42 @@ alias vim="vim -p"
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
-export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
-export LESSOPEN='| ~/.dotfiles/hilite %s | nkf -w'
+
+## ####################################################################
+## @ less
+
+# オプション
+export LESS
+LESS=
+LESS="$LESS --line-numbers"                # 行番号を非表示
+LESS="$LESS --no-init"                     # termcap初期化文字列の送信を抑止
+LESS="$LESS --quit-if-one-screen"          # 単一ページ表示時に lessを自動終了
+LESS="$LESS --RAW-CONTROL-CHAR"            # 制御文字を処理して表示
+LESS="$LESS --hilite-search"               # 検索マッチ文字列をハイライト
+LESS="$LESS --jump-target=10"              # ターゲット行を10行目に指定
+LESS="$LESS -P?f--Less-- %f\: %pb\%"
+
+# 配色（太字）
+export LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me
+LESS_TERMCAP_mb=$'\e[1;36m'    # begin blinking
+LESS_TERMCAP_md=$'\e[1;36m'    # begin bold
+LESS_TERMCAP_me=$'\e[0m'       # end mode
+
+# 配色（モードライン）
+export LESS_TERMCAP_se LESS_TERMCAP_so
+LESS_TERMCAP_so=$'\e[1;44m'    # begin standout-mode - info box
+LESS_TERMCAP_se=$'\e[0m'       # end standout-mode
+
+# 配色（アンダーライン）
+export LESS_TERMCAP_ue LESS_TERMCAP_us
+LESS_TERMCAP_us=$'\e[4;33m'    # begin underline
+LESS_TERMCAP_ue=$'\e[0m'       # end underline
+
+# ソースコードのハイライト
+export LESSOPEN
+LESSOPEN='| ~/.dotfiles/lessfilter %s'
+
+## ####################################################################
 
 case ${OSTYPE} in
     darwin*)
@@ -26,4 +60,3 @@ case ${OSTYPE} in
         export TMUX_TMPDIR=/var/tmp/
         ;;
 esac
-

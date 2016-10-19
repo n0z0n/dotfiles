@@ -1,0 +1,40 @@
+#!/bin/sh
+PYGMENTIZE_OPTION="-O inencoding=`nkf -g "$1"` -O style=monokai -f terminal256"
+
+mime_type=`file -bi "${1}"`
+# echo ${mime_type}
+# pygmentize -O inencoding=`nkf -g "$1"` -N "$1"
+
+case "${mime_type}" in
+    image*charset=binary)
+        # echo "image file"
+        file "${1}"
+        ;;
+    inode/directory*charset=binary*)
+        # echo "directory"
+        lesspipe.sh "$1"
+        ;;
+    application*charset=binary*)
+        # echo "application"
+        lesspipe.sh "$1"
+        ;;
+    *)
+        case `basename $1` in
+            *.txt)
+                pygmentize ${PYGMENTIZE_OPTION} -l text "$1"
+                ;;
+            .zshrc|.bashrc|.bash_aliases|.bash_environment)
+                pygmentize ${PYGMENTIZE_OPTION} -l sh "$1"
+                ;;
+            *)
+                head -n 1 "$1" | grep '#!/bin/bash\|#!/bin/sh' > /dev/null
+                if [ "$?" -eq "0" ]; then
+                    pygmentize ${PYGMENTIZE_OPTION} -l sh "$1"
+                else
+                    pygmentize ${PYGMENTIZE_OPTION} -g "$1"
+                fi
+                ;;
+        esac
+esac
+
+exit 0

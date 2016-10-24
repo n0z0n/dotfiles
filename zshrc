@@ -37,39 +37,30 @@ bindkey "^s" history-incremental-search-forward
 bindkey '^p' history-beginning-search-backward
 bindkey '^n' history-beginning-search-forward
 
-function register-function-if-exist-peco() {
-    bind=$1
-    func=$2
-
-    if which peco > /dev/null; then
-        bindkey ${bind} ${func}
-    fi
-}
-
-function peco-select-history() {
+function fzf-select-history() {
     local tac
     if which tac > /dev/null; then
         tac="tac"
     else
         tac="tail -r"
     fi
-    BUFFER=$(\history -n 1 | eval $tac | awk '!a[$0]++' | peco --query "$LBUFFER")
+    BUFFER=$(\history -n 1 | eval $tac | awk '!a[$0]++' | fzf)
     CURSOR=$#BUFFER
     zle clear-screen
 }
-zle -N peco-select-history
-register-function-if-exist-peco '^r' peco-select-history
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
 
-function peco-src () {
-    local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+function fzf-src () {
+    local selected_dir=$(ghq list -p | fzf --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
     fi
     zle clear-screen
 }
-zle -N peco-src
-register-function-if-exist-peco '^]' peco-src
+zle -N fzf-src
+bindkey '^]' fzf-src
 
 # alias a='fasd -a'        # any
 # alias s='fasd -si'       # show / search / select
@@ -80,14 +71,14 @@ register-function-if-exist-peco '^]' peco-src
 # alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 # alias zz='fasd_cd -d -i' # cd with interactive selection
 
-function peco-fasd-search
+function fzf-fasd-search
 {
-    which peco fasd > /dev/null
+    which fzf fasd > /dev/null
     if [ $? -ne 0 ]; then
-        echo "Please install peco and fasd"
+        echo "Please install fzf and fasd"
         return 1
     fi
-    local res=$(fasd | sort -rn | cut -c 12- | peco)
+    local res=$(fasd | sort -rn | cut -c 12- | fzf)
     if [ -n "$res" ]; then
         BUFFER+=" $res"
         zle accept-line
@@ -95,8 +86,6 @@ function peco-fasd-search
         return 1
     fi
 }
-zle -N peco-fasd-search
-register-function-if-exist-peco '^f' peco-fasd-search
-
-
+zle -N fzf-fasd-search
+bindkey '^f' fzf-fasd-search
 

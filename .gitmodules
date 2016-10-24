@@ -4,3 +4,6 @@
 [submodule "zprezto"]
 	path = zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf.git

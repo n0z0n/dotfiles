@@ -62,5 +62,6 @@ case ${OSTYPE} in
     cygwin*)
         # For cygwin
         export TMUX_TMPDIR=/var/tmp/
+        alias vagrant='LS_COLORS="" vagrant'
         ;;
 esac

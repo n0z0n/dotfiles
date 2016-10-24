@@ -326,3 +326,5 @@
 ## coding: utf-8
 ## mode: shell-script
 ## End:
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

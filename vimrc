@@ -165,3 +165,6 @@ if filereadable(s:local_vimrc)
     execute 'source ' . s:local_vimrc
 endif
 
+
+" FZF
+set rtp+=~/.fzf

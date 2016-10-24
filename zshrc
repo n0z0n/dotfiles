@@ -101,3 +101,6 @@ function peco-fasd-search
 zle -N peco-fasd-search
 register-function-if-exist-peco '^f' peco-fasd-search
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

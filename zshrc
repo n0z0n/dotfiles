@@ -10,12 +10,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-if [ -f ~/.environmentrc ];then
-    . ~/.environmentrc
-fi
-if [ -f ~/.proxyrc ];then
-    . ~/.proxyrc
-fi
+[ -f ~/.fzf.zsh ]       && source ~/.fzf.zsh
+[ -f ~/.environmentrc ] && source ~/.environmentrc
+[ -f ~/.proxyrc ]       && source ~/.proxyrc
 
 setopt   inc_append_history     # 履歴をインクリメンタルに追加
 setopt   hist_ignore_dups       # 重複を記録しない
@@ -102,5 +99,4 @@ zle -N peco-fasd-search
 register-function-if-exist-peco '^f' peco-fasd-search
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

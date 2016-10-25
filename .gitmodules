@@ -10,3 +10,6 @@
 [submodule "fasd"]
 	path = fasd
 	url = https://github.com/clvv/fasd.git
+[submodule "rcm"]
+	path = rcm
+	url = https://github.com/thoughtbot/rcm.git

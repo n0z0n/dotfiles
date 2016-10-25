@@ -7,3 +7,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "fasd"]
+	path = fasd
+	url = https://github.com/clvv/fasd.git

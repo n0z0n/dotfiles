@@ -5,6 +5,10 @@ mime_type=`file -b --mime "${1}"`
 # echo ${mime_type}
 # pygmentize -O inencoding=`nkf -g "$1"` -N "$1"
 
+LESSPIPE=""
+[ -x "`which lesspipe`" ] && LESSPIPE=`which lesspipe`
+[ -x "`which lesspipex.sh`" ] && LESSPIPE=`which lesspipe.sh`
+
 case "${mime_type}" in
     image*charset=binary)
         # echo "image file"
@@ -12,11 +16,19 @@ case "${mime_type}" in
         ;;
     inode/directory*charset=binary*)
         # echo "directory"
-        lesspipe.sh "$1"
+        if [ -z ${LESSPIPE} ]; then
+            file "${1}"
+        else
+            ${LESSPIPE} "$1"
+        fi
         ;;
     application*charset=binary*)
         # echo "application"
-        lesspipe.sh "$1"
+        if [ -z ${LESSPIPE} ]; then
+            file "${1}"
+        else
+            ${LESSPIPE} "$1"
+        fi
         ;;
     *)
         case `basename $1` in

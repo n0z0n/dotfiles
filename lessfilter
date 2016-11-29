@@ -33,17 +33,17 @@ case "${mime_type}" in
     *)
         case `basename $1` in
             *.txt)
-                pygmentize ${PYGMENTIZE_OPTION} -l text "$1"
+                pygmentize ${PYGMENTIZE_OPTION} -l text "$1" 2> /dev/null
                 ;;
             .zshrc|.bashrc|.bash_aliases|.bash_environment)
-                pygmentize ${PYGMENTIZE_OPTION} -l sh "$1"
+                pygmentize ${PYGMENTIZE_OPTION} -l sh "$1"   2> /dev/null
                 ;;
             *)
                 head -n 1 "$1" | grep '#!/bin/bash\|#!/bin/sh' > /dev/null
                 if [ "$?" -eq "0" ]; then
-                    pygmentize ${PYGMENTIZE_OPTION} -l sh "$1"
+                    pygmentize ${PYGMENTIZE_OPTION} -l sh "$1" 2> /dev/null
                 else
-                    pygmentize ${PYGMENTIZE_OPTION} -g "$1"
+                    pygmentize ${PYGMENTIZE_OPTION} -g "$1" 2> /dev/null
                 fi
                 ;;
         esac

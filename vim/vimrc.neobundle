@@ -26,12 +26,18 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/Align'
+NeoBundle 'ekalinin/Dockerfile.vim'
+" molokai
+NeoBundle 'tomasr/molokai'
 
 " NeoBundle 'flazz/vim-colorschemes'
 " NeoBundle 'justmao945/vim-clang'
 " NeoBundle 'tpope/vim-fugitive'
 "
 NeoBundle 'yuratomo/w3m.vim'
+
+NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'kana/vim-operator-user'
 
 " Required:
 call neobundle#end()

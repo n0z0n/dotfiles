@@ -89,3 +89,18 @@ function fzf-fasd-search
 zle -N fzf-fasd-search
 bindkey '^f' fzf-fasd-search
 
+
+
+if [[ "$TERM" == *screen* ]]; then
+    function ssh_tmux() {
+        eval server=\${$#}
+        tmux new-window -n $@ "exec ssh $@"
+    }
+    function man_tmux() {
+        eval server=\${$#}
+        tmux split-window "exec man $@"
+    }
+
+    alias ssh=ssh_tmux
+    alias man=man_tmux
+fi

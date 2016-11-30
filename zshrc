@@ -89,8 +89,6 @@ function fzf-fasd-search
 zle -N fzf-fasd-search
 bindkey '^f' fzf-fasd-search
 
-
-
 if [[ "$TERM" == *screen* ]]; then
     function ssh_tmux() {
         eval server=\${$#}

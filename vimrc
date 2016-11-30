@@ -165,17 +165,17 @@ if filereadable(s:local_vimrc)
     execute 'source ' . s:local_vimrc
 endif
 
-
 let g:clang_format#style_options = {
-            \ "BasedOnStyle" :  "Google",
-            \ "AlignConsecutiveAssignments" : "true",
-            \ "AlignEscapedNewlinesLeft" : "true",
-            \ "AccessModifierOffset" : -4,
+            \ "BasedOnStyle"                        : "Google",
+            \ "AlignConsecutiveAssignments"         : "true",
+            \ "AlignEscapedNewlinesLeft"            : "true",
+            \ "AccessModifierOffset"                : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "BinPackParameters" : "false",
-            \ "BinPackArguments" : "false",
-            \ "Standard" : "C++11"}
+            \ "AlwaysBreakTemplateDeclarations"     : "true",
+            \ "BinPackParameters"                   : "false",
+            \ "BinPackArguments"                    : "false",
+            \ "Standard"                            : "C++11"
+            \ }
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -184,7 +184,6 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-
 autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 

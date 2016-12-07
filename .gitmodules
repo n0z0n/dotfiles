@@ -1,3 +1,6 @@
 [submodule "rcm"]
 	path = rcm
 	url = https://github.com/thoughtbot/rcm.git
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug

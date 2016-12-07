@@ -1,4 +1,0 @@
-EXCLUDES="*:dircolors-solarized Makefile"
-SYMLINK_DIRS="zprezto config fzf"
-
-

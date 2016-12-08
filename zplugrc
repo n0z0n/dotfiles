@@ -15,13 +15,14 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # Supports oh-my-zsh plugins and the like
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/tmux",   from:oh-my-zsh
+zplug "themes/bira",   from:oh-my-zsh, as:theme
 
 # Also prezto
-zplug "modules/prompt", from:prezto, hook-load:"{
-	autoload -Uz promptinit
-	promptinit
-	prompt adam2
-}"
+#zplug "modules/prompt", from:prezto, hook-load:"{
+#	autoload -Uz promptinit
+#	promptinit
+#	prompt adam2
+#}"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

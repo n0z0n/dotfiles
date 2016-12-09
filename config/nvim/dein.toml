@@ -1,0 +1,22 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+  " set background=dark
+  " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
+  " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+  au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+
+
+[[plugins]]
+repo = 'vim-syntastic/syntastic'

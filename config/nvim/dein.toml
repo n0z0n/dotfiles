@@ -4,9 +4,6 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
-  " set background=dark
-  " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
-  " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
   au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 [[plugins]]
@@ -19,4 +16,41 @@ repo = 'hynek/vim-python-pep8-indent'
 
 
 [[plugins]]
-repo = 'vim-syntastic/syntastic'
+repo = 'tell-k/vim-autopep8'
+hook_add = '''
+" autocmd FileType python BufWritePost <buffer> :call Autopep8()<CR>
+
+"autocmd BufWritePost *.py call Autopep8()
+
+function! Preserve(command)
+    " Save the last search.
+    let search = @/
+    " Save the current cursor position.
+    let cursor_position = getpos('.')
+    " Save the current window position.
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    " Execute the command.
+    execute a:command
+    " Restore the last search.
+    let @/ = search
+    " Restore the previous window position.
+    call setpos('.', window_position)
+    normal! zt
+    " Restore the previous cursor position.
+    call setpos('.', cursor_position)
+endfunction
+
+function! Autopep8()
+    call Preserve(':silent %!autopep8 -')
+endfunction
+
+autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
+" autocmd FileType python BufWritePost :call Autopep8()<CR>
+autocmd BufWritePost *.py :call Autopep8()
+
+
+
+'''
+

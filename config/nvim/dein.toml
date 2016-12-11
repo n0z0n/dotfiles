@@ -6,22 +6,25 @@ repo = 'tomasr/molokai'
 hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
+
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 
 [[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
 repo = 'Yggdroot/indentLine'
+
 [[plugins]]
 repo = 'hynek/vim-python-pep8-indent'
-
 
 [[plugins]]
 repo = 'tell-k/vim-autopep8'
 hook_add = '''
-" autocmd FileType python BufWritePost <buffer> :call Autopep8()<CR>
-
-"autocmd BufWritePost *.py call Autopep8()
-
 function! Preserve(command)
     " Save the last search.
     let search = @/
@@ -46,11 +49,17 @@ function! Autopep8()
     call Preserve(':silent %!autopep8 -')
 endfunction
 
-autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
-" autocmd FileType python BufWritePost :call Autopep8()<CR>
-autocmd BufWritePost *.py :call Autopep8()
-
-
-
+autocmd BufWrite *.py :call Autopep8()
 '''
 
+[[plugins]]
+repo = "cespare/vim-toml"
+
+[[plugins]]
+repo ='scrooloose/syntastic'
+hook_add = '''
+let g:syntastic_python_checkers = ['pylint' ]
+'''
+
+[[plugins]]
+repo ='davidhalter/jedi-vim'

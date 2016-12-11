@@ -1,1 +1,1 @@
-EXCLUDES="*:zplug:test* *:zplug:doc* rcm *:README.md Makefile"
+EXCLUDES="*:zplug:test* *:zplug:doc* rcm *:README.md Makefile *:CHANGELOG.md *:HOW_TO_PLUGIN.md *:LICENSE.md"

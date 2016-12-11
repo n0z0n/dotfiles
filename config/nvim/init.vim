@@ -18,6 +18,7 @@ endif
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " プラグイン読み込み＆キャッシュ作成
 let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
+let s:toml_file_lazy = fnamemodify(expand('<sfile>'), ':h').'/dein_lazy.toml'
 " if has("nvim")
 " 	let s:toml_file_path = [$MYVIMRC, s:toml_file]
 " else
@@ -27,9 +28,11 @@ let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   if has("nvim")
-    call dein#load_toml(s:toml_file)
+    call dein#load_toml(s:toml_file,      {'lazy': 0})
+    call dein#load_toml(s:toml_file_lazy, {'lazy': 1})
   else
-    call dein#load_toml("~/.config/nvim/dein.toml")
+    call dein#load_toml("~/.config/nvim/dein.toml",          {'lazy': 0})
+    call dein#load_toml("~/.config/nvim/dein_lazy.toml",     {'lazy': 1})
   endif
   call dein#end()
   call dein#save_state()

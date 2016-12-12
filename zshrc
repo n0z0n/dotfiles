@@ -76,16 +76,13 @@ zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAU
 # マッチ種別を別々に表示
 zstyle ':completion:*' group-name ''
 
-
-
 # セパレータを設定する
 zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 
 # ファイル補完候補に色を付ける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-
+alias ls="ls --color=auto"
 
 # 補完に関するオプション
 # http://voidy21.hatenablog.jp/entry/20090902/1251918174
@@ -96,31 +93,16 @@ setopt auto_menu            # 補完キー連打で順に補完候補を自動�
 setopt auto_param_keys      # カッコの対応などを自動的に補完
 setopt interactive_comments # コマンドラインでも # 以降をコメントと見なす
 setopt magic_equal_subst    # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+setopt complete_in_word     # 語の途中でもカーソル位置で補完
+setopt always_last_prompt   # カーソル位置は保持したままファイル名一覧を順次その場で表示
+setopt print_eight_bit      # 日本語ファイル名等8ビットを通す
+setopt extended_glob        # 拡張グロブで補完(~とか^とか。例えばless *.txt~memo.txt ならmemo.txt 以外の *.txt にマッチ)
+setopt globdots             # 明確なドットの指定なしで.から始まるファイルをマッチ
+bindkey "^I" menu-complete  # 展開する前に補完候補を出させる(Ctrl-iで補完するようにする)
 
-setopt complete_in_word   # 語の途中でもカーソル位置で補完
-setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
-setopt print_eight_bit    # 日本語ファイル名等8ビットを通す
-setopt extended_glob      # 拡張グロブで補完(~とか^とか。例えばless *.txt~memo.txt ならmemo.txt 以外の *.txt にマッチ)
-setopt globdots           # 明確なドットの指定なしで.から始まるファイルをマッチ
-bindkey "^I" menu-complete   # 展開する前に補完候補を出させる(Ctrl-iで補完するようにする)
-
-# 範囲指定できるようにする
-# 例 : mkdir {1-3} で フォルダ1, 2, 3を作れる
-setopt brace_ccl
-
-# manの補完をセクション番号別に表示させる
-zstyle ':completion:*:manuals' separate-sections true
-
-# 変数の添字を補完する
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# apt-getとかdpkgコマンドをキャッシュを使って速くする
-zstyle ':completion:*' use-cache true
-
-# ディレクトリを切り替える時の色々な補完スタイル
-#cd は親ディレクトリからカレントディレクトリを選択しないので表示させないようにする (例: cd ../<TAB>):
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
-
-# オブジェクトファイルとか中間ファイルとかはfileとして補完させない
-zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
-
+setopt brace_ccl                                                    # 範囲指定できるようにする
+zstyle ':completion:*:manuals' separate-sections true               # manの補完をセクション番号別に表示させる
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters # 変数の添字を補完する
+zstyle ':completion:*' use-cache true                               # apt-getとかdpkgコマンドをキャッシュを使って速くする
+zstyle ':completion:*:cd:*' ignore-parents parent pwd               # cd は親ディレクトリからカレントディレクトリを選択しないので表示させないようにする
+zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'   # オブジェクトファイルとか中間ファイルとかはfileとして補完させない

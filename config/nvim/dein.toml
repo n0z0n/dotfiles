@@ -63,3 +63,14 @@ let g:syntastic_python_checkers = ['pylint' ]
 
 [[plugins]]
 repo ='davidhalter/jedi-vim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+'''
+

@@ -3,10 +3,10 @@ export ZPLUG_HOME=~/.zplug
 
 . ${ZPLUG_HOME}/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting",    nice:10
+zplug "zsh-users/zsh-syntax-highlighting",    defer:1
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "joel-porquet/zsh-dircolors-solarized", hook-load:"setupsolarized dircolors.ansi-universal"
+#zplug "joel-porquet/zsh-dircolors-solarized", hook-load:"setupsolarized dircolors.ansi-universal"
 zplug "plugins/git",                          from:oh-my-zsh
 zplug "plugins/git-flow",                     from:oh-my-zsh
 zplug "plugins/tmux",                         from:oh-my-zsh
@@ -31,4 +31,4 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load

@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+
+
 PATH=/sbin:${PATH}
 PATH=/bin:${PATH}
 PATH=/usr/sbin:${PATH}
@@ -7,12 +9,22 @@ PATH=/usr/local/sbin:${PATH}
 PATH=/usr/local/bin:${PATH}
 PATH=/usr/local/opt/findutils/libexec/gnubin:${PATH}
 PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+PATH=~/.local/bin:${PATH}
 export PATH
 
 MANPATH=/usr/local/opt/findutils/libexec/gnuman:${MANPATH}
 MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 MANPATH=/usr/local/share/man:${MANPATH}
 export MANPATH
+
+
+export PYENV_ROOT=${HOME}/.pyenv
+export PATH=${PYENV_ROOT}/bin:${PATH}
+export PATH=${PYENV_ROOT}/versions/anaconda3-4.2.0/bin:${PATH}
+eval "$(pyenv init -)"
+
+export LESS='-R'
+export LESSOPEN='|lessfilter %s'
 
 [[ -e ~/.zplugrc ]]       && . ~/.zplugrc
 [[ -e ~/.environmentrc ]] && . ~/.environmentrc
@@ -106,3 +118,23 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters # 変数の�
 zstyle ':completion:*' use-cache true                               # apt-getとかdpkgコマンドをキャッシュを使って速くする
 zstyle ':completion:*:cd:*' ignore-parents parent pwd               # cd は親ディレクトリからカレントディレクトリを選択しないので表示させないようにする
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'   # オブジェクトファイルとか中間ファイルとかはfileとして補完させない
+
+
+
+
+compinit -u
+
+function __fzfcmd() {
+	[ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux" || echo "fzf"
+}
+
+function fzf-ghq() {
+	local selected_dir=$(ghq list -p | $(__fzfcmd) --ansi --query "$LBUFFER")
+	if [ -n "$selected_dir" ]; then
+		BUFFER="cd ${selected_dir}"
+		zle accept-line
+	fi
+}
+zle -N fzf-ghq
+bindkey '^g' fzf-ghq
+

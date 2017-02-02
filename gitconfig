@@ -1,2 +1,5 @@
 [ghq]
 	root = ~/.local/src
+[user]
+	email = mail+github@n0z.me
+	name = n0z0n

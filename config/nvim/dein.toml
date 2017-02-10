@@ -74,3 +74,5 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 '''
 
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'

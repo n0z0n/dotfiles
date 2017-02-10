@@ -136,3 +136,5 @@ function fzf-ghq() {
 zle -N fzf-ghq
 bindkey '^g' fzf-ghq
 
+
+export TERM=xterm-256color

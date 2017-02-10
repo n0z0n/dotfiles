@@ -74,9 +74,8 @@ set showmatch                                                  " 対応括弧を
 set wrap                                                       " ウィンドウの幅より長い行は折り返され、次の行に続けて表示される
 syntax on                                                      " シンタックスハイライト
 
-
 set list                                                       " 不可視文字を表示
-set listchars=tab:≫-,trail:-,extends:≫,precedes:≪,nbsp:%,eol:? " 不可視文字を表示
+set listchars=tab:≫-,trail:-,extends:≫,precedes:≪,nbsp:%,eol:↲ " 不可視文字を表示
 hi SpecialKey ctermfg=232 ctermbg=NONE guifg=LightGrey guibg=DarkGrey
 hi NonText ctermfg=232 ctermbg=NONE guifg=LightGrey guibg=DarkGrey
 
@@ -163,6 +162,9 @@ nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
+
+
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 filetype plugin indent on
 syntax on

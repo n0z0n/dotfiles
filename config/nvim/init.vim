@@ -93,7 +93,9 @@ set shiftwidth=2                                               " 自動インデ
 set shiftround                                                 " インデントをshiftwidthの倍数に丸める
 set switchbuf=useopen                                          " 新しく開く代わりにすでに開いてあるバッファを開く
 set textwidth=0                                                " 入力されているテキストの最大幅を無効にする
-set ttymouse=xterm2                                            " xtermとscreen対応
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 set vb t_vb=                                                   " visual bellを消す
 set virtualedit=all                                            " 文字がない場所にもカーソルを移動できるようにする
 set visualbell                                                 " visual bellを消す

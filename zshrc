@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+bindkey -v
 
 PATH=/sbin:${PATH}
 PATH=/bin:${PATH}
@@ -123,18 +124,56 @@ zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'   # オブジ�
 compinit -u
 
 function __fzfcmd() {
-	[ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux" || echo "fzf"
+    [ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux" || echo "fzf"
 }
 
 function fzf-ghq() {
-	local selected_dir=$(ghq list -p | $(__fzfcmd) --ansi --query "$LBUFFER")
-	if [ -n "$selected_dir" ]; then
-		BUFFER="cd ${selected_dir}"
-		zle accept-line
-	fi
+    local selected_dir=$(ghq list -p | $(__fzfcmd) --ansi --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
 }
 zle -N fzf-ghq
 bindkey '^g' fzf-ghq
 
+# CTRL-R - Paste the selected command from history into the command line
+function fzf-history-widget() {
+    local selected num
+    setopt localoptions noglobsubst pipefail 2> /dev/null
+    selected=( $(fc -l 1 |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS +s --tac -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(q)LBUFFER} +m" $(__fzfcmd)) )
+    local ret=$?
+    if [ -n "$selected" ]; then
+        num=$selected[1]
+        if [ -n "$num" ]; then
+            zle vi-fetch-history -n $num
+        fi
+    fi
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    return $ret
+}
+zle     -N   fzf-history-widget
+bindkey '^R' fzf-history-widget
+
+# ALT-C - cd into the selected directory
+fzf-cd-widget() {
+  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type d -print 2> /dev/null | sed 1d | cut -b3-"}"
+  setopt localoptions pipefail 2> /dev/null
+  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  cd "$dir"
+  local ret=$?
+  zle reset-prompt
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+zle     -N    fzf-cd-widget
+bindkey '^J'  fzf-cd-widget
 
 export TERM=xterm-256color

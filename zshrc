@@ -28,6 +28,7 @@ export LESSOPEN='|lessfilter %s'
 [[ -e ~/.zplugrc ]]       && . ~/.zplugrc
 [[ -e ~/.environmentrc ]] && . ~/.environmentrc
 [[ -e ~/.proxyrc ]]       && . ~/.proxyrc
+[[ -e ~/.themerc ]]       && . ~/.themerc
 
 export   HISTFILE=${HOME}/.zshhistory  # 履歴ファイルの保存先
 export   HISTSIZE=10000                # メモリに保存される履歴の件数

@@ -23,6 +23,9 @@ repo = 'Yggdroot/indentLine'
 repo = 'hynek/vim-python-pep8-indent'
 
 [[plugins]]
+repo = 'kevinw/pyflakes-vim'
+
+[[plugins]]
 repo = 'tell-k/vim-autopep8'
 hook_add = '''
 function! Preserve(command)
@@ -58,7 +61,7 @@ repo = "cespare/vim-toml"
 [[plugins]]
 repo ='scrooloose/syntastic'
 hook_add = '''
-let g:syntastic_python_checkers = ['pylint' ]
+let g:syntastic_python_checkers = ['flake8' ]
 '''
 
 [[plugins]]
@@ -76,3 +79,11 @@ nmap ga <Plug>(EasyAlign)
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'vim-scripts/yanktmp.vim.git'
+hook_add = '''
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>
+'''

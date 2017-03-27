@@ -65,9 +65,6 @@ let g:syntastic_python_checkers = ['flake8' ]
 '''
 
 [[plugins]]
-repo ='davidhalter/jedi-vim'
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -86,4 +83,11 @@ hook_add = '''
 map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
+'''
+
+[[plugins]]
+repo = 'ervandew/supertab'
+hook_add = '''
+let g:SuperTabContextDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 '''

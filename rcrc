@@ -1,2 +1,2 @@
-EXCLUDES="init.sh *:zplug:test* *:zplug:doc* rcm *:README.md Makefile *:CHANGELOG.md *:HOW_TO_PLUGIN.md *:LICENSE.md"
+EXCLUDES="init.sh *:zplug:test* *:zplug:doc* rcm *:README.md Makefile *:CHANGELOG.md *:HOW_TO_PLUGIN.md *:LICENSE.md requirements.txt"
 DOTFILES_DIRS=~/.local/src/github.com/n0z0n/dotfiles

@@ -15,5 +15,5 @@ indent_style = tab
 [*conf*]
 indent_style = tab
 
- [*sh]
+[*sh]
 indent_style = tab

@@ -1,0 +1,93 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+  au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+
+[[plugins]]
+repo = 'kevinw/pyflakes-vim'
+
+[[plugins]]
+repo = 'tell-k/vim-autopep8'
+hook_add = '''
+function! Preserve(command)
+    " Save the last search.
+    let search = @/
+    " Save the current cursor position.
+    let cursor_position = getpos('.')
+    " Save the current window position.
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
+    " Execute the command.
+    execute a:command
+    " Restore the last search.
+    let @/ = search
+    " Restore the previous window position.
+    call setpos('.', window_position)
+    normal! zt
+    " Restore the previous cursor position.
+    call setpos('.', cursor_position)
+endfunction
+
+function! Autopep8()
+    call Preserve(':silent %!autopep8 -')
+endfunction
+
+autocmd BufWrite *.py :call Autopep8()
+'''
+
+[[plugins]]
+repo = "cespare/vim-toml"
+
+[[plugins]]
+repo ='scrooloose/syntastic'
+hook_add = '''
+let g:syntastic_python_checkers = ['flake8' ]
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'vim-scripts/yanktmp.vim.git'
+hook_add = '''
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>
+'''
+
+[[plugins]]
+repo = 'ervandew/supertab'
+hook_add = '''
+let g:SuperTabContextDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+'''

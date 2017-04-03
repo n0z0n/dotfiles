@@ -22,6 +22,9 @@ set -x PATH {$PYENV_ROOT}/bin {$PATH}
 
 set -x FZF_TMUX 1
 
+set -x LESS -R
+set -x LESSOPEN '|lessfilter %s'
+
 # ## vi mode
 # fish_vi_key_bindings
 #

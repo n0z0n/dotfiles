@@ -9,9 +9,9 @@ set -x PATH /usr/local/opt/coreutils/libexec/gnubin {$PATH}
 set -x PATH ~/.local/bin                            {$PATH}
 
 
-set -x MANPATH /usr/local/opt/findutils/libexec/gnuman {$MANPATH}
-set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman {$MANPATH}
-set -x MANPATH /usr/local/share/man {$MANPATH}
+# set -x MANPATH /usr/local/opt/findutils/libexec/gnuman {$MANPATH}
+# set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman {$MANPATH}
+# set -x MANPATH /usr/local/share/man {$MANPATH}
 
 set -x GOPATH ~/.local/
 

@@ -20,7 +20,7 @@ set -x FZF_TMUX 1
 set -x LESS -R
 set -x LESSOPEN '|lessfilter %s'
 
-# alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="env TERM=screen-256color-bce tmux"
 
 # ## vi mode
 # fish_vi_key_bindings

@@ -17,32 +17,26 @@ if !isdirectory(s:dein_repo_dir)
 endif
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " プラグイン読み込み＆キャッシュ作成
-let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
-let s:toml_file_lazy = fnamemodify(expand('<sfile>'), ':h').'/dein_lazy.toml'
-" if has("nvim")
-" 	let s:toml_file_path = [$MYVIMRC, s:toml_file]
-" else
-" 	let s:toml_file_path = "~/.config/nvim/dein.toml"
-" endif
 
+let s:toml_file = fnamemodify(resolve(expand('<sfile>')), ':h').'/dein.toml'
+" let s:toml_file = fnamemodify(expand(resolve('<sfile>')), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  if has("nvim")
-    call dein#load_toml(s:toml_file,      {'lazy': 0})
-    call dein#load_toml(s:toml_file_lazy, {'lazy': 1})
-  else
-    call dein#load_toml("~/.config/nvim/dein.toml",          {'lazy': 0})
-    call dein#load_toml("~/.config/nvim/dein_lazy.toml",     {'lazy': 1})
-  endif
+  call dein#load_toml(s:toml_file)
   call dein#end()
   call dein#save_state()
 endif
-
 " 不足プラグインの自動インストール
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 " }}}
+
+
+" 基本的な設定
+filetype plugin indent on
+syntax on
+scriptencoding utf-8
 
 " ファイル関連
 set encoding=utf-8                                              " エンコード
@@ -84,7 +78,7 @@ hi NonText ctermfg=232 ctermbg=NONE guifg=LightGrey guibg=DarkGrey
 set backspace=indent,eol,start                                 " バックスペースで各種消せるようにする
 set hidden                                                     " 変更中のファイルでも、保存しないで他のファイルを表示
 set history=10000                                              " コマンド、検索パターンを10000個まで履歴に残す
-set mouse=a                                                    " マウスモード有効
+set mouse=                                                     " マウスモード無効
 set nocompatible                                               " compatibleオプションをオフにする
 set noerrorbells                                               " error bellを消す
 set nostartofline                                              " 移動コマンドを使ったとき、行頭に移動しない
@@ -168,5 +162,4 @@ nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-filetype plugin indent on
-syntax on
+

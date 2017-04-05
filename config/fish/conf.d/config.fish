@@ -8,11 +8,6 @@ set -x PATH /usr/local/opt/findutils/libexec/gnubin {$PATH}
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin {$PATH}
 set -x PATH ~/.local/bin                            {$PATH}
 
-
-set -x MANPATH /usr/local/opt/findutils/libexec/gnuman {$MANPATH}
-set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman {$MANPATH}
-set -x MANPATH /usr/local/share/man {$MANPATH}
-
 set -x GOPATH ~/.local/
 
 set -x PYENV_ROOT {$HOME}/.pyenv
@@ -24,6 +19,8 @@ set -x FZF_TMUX 1
 
 set -x LESS -R
 set -x LESSOPEN '|lessfilter %s'
+
+# alias tmux="TERM=screen-256color-bce tmux"
 
 # ## vi mode
 # fish_vi_key_bindings

@@ -8,12 +8,76 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo = 'Shougo/neocomplete'
+if = 'has("lua")'
+on_i = 1
 hook_add = '''
-let g:deoplete#enable_at_startup = 1
+  " 最初の候補がデフォで選択されないようにする
+  set completeopt+=noinsert
+  " 起動時に有効化
+  let g:neocomplete#enable_at_startup = 1
+  " " 自動で補完候補を出す
+  let g:neocomplete#disable_auto_complete = 0
+  " メニューの一番目を自動選択
+  let g:neocomplete#enable_auto_select = 1
+  let g:neocomplete#keyword_patterns = get(g:, 'neocomplete#keyword_pattern', {})
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+  " ログファイルは補完を停止
+  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
+  " " 大文字小文字とかあいまい検索とか
+  let g:neocomplete#enable_ignore_case = 1
+  let g:neocomplete#enable_smart_case  = 1
+  let g:neocomplete#enable_fuzzy_completion = 1
+  " Enable omni completion.
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  let g:neocomplete#force_omni_input_patterns = get(g:, 'neocomplete#force_omni_input_patterns', {})
+  let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
+  let g:neocomplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#delimiter_patterns = get(g:, 'neocomplete#delimiter_patterns', {})
+  let g:neocomplete#delimiter_patterns.ruby = ['::']
+  let g:neocomplete#same_filetypes = get(g:, 'neocomplete#same_filetypes', {})
+  let g:neocomplete#same_filetypes.ruby = 'eruby'
+  " KeyMaps
+  " Tabでいい感じに補完
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " Enterで確定（確定と同時に改行しない）
+  inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+'''
+hook_post_source = '''
+  " neco-look を連携させる（カスタムソース追加＆text_mode_filetypesで有効化したいftリストの設定が必要）
+  call neocomplete#custom#source('look', 'min_pattern_length', 1)
+  let g:neocomplete#text_mode_filetypes = get(g:, 'neocomplete#text_mode_filetypes', {})
+  for t in [ 'rst', 'markdown', 'gitrebase', 'gitcommit', 'vcs-commit', 'hybrid', 'text', 'help', 'tex' ]
+    let g:neocomplete#text_mode_filetypes[t] = 1
+  endfor
+'''
+
+[[plugins]] # コード補完
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+on_i = 1
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#sources#go#package_dot = 1
+  set completeopt-=preview " プレビューウィンドウを開かないようにする
+  "set completeopt+=noinsert " 最初の候補がデフォで選択されるようにする
+  " TAB や Shift-TAB で補完補完候補を上下する
+  if ! dein#tap('neosnippet.vim')
+    " neosnippet使う場合はそっちも考慮した設定をしてるのでスキップ
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  endif
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  inoremap <expr><UP>   pumvisible() ? "\<C-p>" : "<UP>"
+  inoremap <expr><DOWN> pumvisible() ? "\<C-n>" : "<DOWN>"
+  " python3が無かったらメッセージを表示
+  if has('nvim') && !has('python3')
+    echo "require python3 https://gist.github.com/kawaz/393c7f62fe6e857cc3d9 or execute 'pip3 install neovim --upgrade' and :call dein#update()"
+  endif
 '''
 
 [[plugins]]
@@ -21,12 +85,15 @@ repo = 'Yggdroot/indentLine'
 
 [[plugins]]
 repo = 'hynek/vim-python-pep8-indent'
+on_ft = 'python'
 
 [[plugins]]
 repo = 'kevinw/pyflakes-vim'
+on_ft = 'python'
 
 [[plugins]]
 repo = 'tell-k/vim-autopep8'
+on_ft = 'python'
 hook_add = '''
 function! Preserve(command)
     " Save the last search.
@@ -47,29 +114,21 @@ function! Preserve(command)
     " Restore the previous cursor position.
     call setpos('.', cursor_position)
 endfunction
-
 function! Autopep8()
     call Preserve(':silent %!autopep8 -')
 endfunction
-
 autocmd BufWrite *.py :call Autopep8()
 '''
 
-[[plugins]]
-repo = "cespare/vim-toml"
-
-[[plugins]]
-repo ='scrooloose/syntastic'
-hook_add = '''
-let g:syntastic_python_checkers = ['flake8' ]
-'''
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 '''
@@ -85,9 +144,127 @@ map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
 '''
 
-[[plugins]]
-repo = 'ervandew/supertab'
+[[plugins]] # C-pでファイル選択が捗る http://bit.ly/NuXA5u
+repo = 'ctrlpvim/ctrlp.vim'
 hook_add = '''
-let g:SuperTabContextDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-n>"
+  " <cr>をタブで開くにマッピング（eのデフォルトから<cr>を除いて、tのマッピングに追加する）
+  let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<c-t>', '<cr>']
+    \ }
+  " ignoreされてるファイル/ディレクトリは検索しない（高速化）
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+  " .gitなどを探してそこから下を探せるようにする
+  let g:ctrlp_working_path_mode = 'ra'
 '''
+
+[[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # vim-precious で <Plug>(textobj-precious-i) を使用したい時に必要。
+repo = 'kana/vim-textobj-user'
+
+[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim', 'vim-textobj-user']
+
+[[plugins]] # 行末の空白の可視化＆ :FixWhitespace で削除
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]] # 行番号の左側にdiffの+-とかが表示されるようにする、[c と ]c で前後のHunkに移動できる。
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_sign_modified = 'M'
+  let g:gitgutter_max_signs = 5000
+  " カレント行のhunkについて diff/add/reset を行うマップを追加
+  nmap <Leader>hs <Plug>GitGutterStageHunk
+  nmap <Leader>ha <Plug>GitGutterStageHunk
+  nmap <Leader>hr <Plug>GitGutterRevertHunk
+  nmap <Leader>hp <Plug>GitGutterPreviewHunk
+  nmap <Leader>hd <Plug>GitGutterPreviewHunk
+'''
+
+[[plugins]] # GstatusとかGblameとかvim内でgit操作が出来る。あとgitcommitモードのmodifiedとかの行でEnterするとファイルに飛べたりする
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+# 簡単コメント、Ctr+/ でカーソル行or選択範囲をコメントトグル
+repo = 'tyru/caw.vim'
+hook_add = '''
+  " C-/ でコメントアウト、ビジュアルモードでは選択範囲が解除されないよう直後にgvを足す
+  nmap <C-_> <Plug>(caw:hatpos:toggle)
+  vmap <C-_> <Plug>(caw:hatpos:toggle)gv
+'''
+
+[[plugins]]
+# :Tabularize /, とかでアライン整形（使い方メモ http://teotr.github.io/blog/2011/04/15/tabular/
+repo = 'godlygeek/tabular'
+
+[[plugins]] # \r で即時実行
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+      \ 'runner'    : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 60,
+      \ 'outputter' : 'error',
+      \ 'outputter/error/success' : 'buffer',
+      \ 'outputter/error/error'   : 'quickfix',
+      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+      \ 'outputter/buffer/close_on_empty' : 1,
+      \ }
+'''
+
+[[plugins]]
+# Markdownのテーブル編集を簡単にする :TableModeToggle
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+depends = ['tabular', 'vim-markdown-quote-syntax']
+on_ft = ['markdown']
+hook_add = '''
+  let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_better_folding = 1
+  let g:vim_markdown_no_default_key_mappings=1
+  let g:vim_markdown_new_list_item_indent = 2
+'''
+hook_post_source = '''
+  syntax cluster Spell remove=mkdCode
+'''
+
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax'
+on_ft = ['markdown']
+
+[[plugins]]
+# 外部コマンドに依存しないMarkdownプレビュー、open-browser.vimとリアルタイムプレビューできて素敵
+repo = 'kannokanno/previm'
+hook_add = '''
+  " TODO: :PrevimOpen でブラウザを開けるんだがquick-runで開きたい
+'''
+
+[[plugins]] # g> g< gs で引数の位置交換を簡単に行う
+repo = 'machakann/vim-swap'
+
+[[plugins]] # 今時のSyntastic/Neomake的なやつ（非同期で軽い）
+repo = 'w0rp/ale'
+hook_add = '''
+  let g:ale_sign_error = 'E'
+  let g:ale_sign_warning = 'W'
+  let g:ale_statusline_format = ['E%d', 'W%d', '']
+  " use quickfix instead of loclist
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_open_list = 1
+  let g:ale_keep_list_window_open = 0
+  " TODO: hotfix for ale_open_list bug https://github.com/w0rp/ale/issues/272
+  if 1
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_enter = 0
+  endif
+  " shellcheck ignores
+  let g:ale_linters_sh_shellckeck_exclusions = 'SCxxxx'
+'''
+

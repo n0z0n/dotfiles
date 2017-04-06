@@ -5,6 +5,7 @@ repo = 'Shougo/dein.vim'
 repo = 'tomasr/molokai'
 hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme molokai
+
 '''
 
 # [[plugins]]
@@ -116,9 +117,9 @@ repo = 'Yggdroot/indentLine'
 repo = 'hynek/vim-python-pep8-indent'
 on_ft = 'python'
 
-[[plugins]]
-repo = 'kevinw/pyflakes-vim'
-on_ft = 'python'
+# [[plugins]]
+# repo = 'kevinw/pyflakes-vim'
+# on_ft = 'python'
 
 [[plugins]]
 repo = 'tell-k/vim-autopep8'
@@ -321,9 +322,11 @@ repo = 'benjie/neomake-local-eslint.vim'
 [[plugins]]
 repo = 'neomake/neomake'
 hook_add = '''
-autocmd! BufWritePost * Neomake " 保存時に実行する
+    autocmd! BufWritePost * Neomake " 保存時に実行する
     let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
     let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
+    let g:neomake_open_list = 1
+    let g:neomake_python_enabled_makers = ['flake8']
 '''
 
 [[plugins]]
@@ -356,4 +359,15 @@ let g:lightline = {
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
 
+'''
+
+[[plugins]]
+repo = 'fisadev/vim-isort'
+on_ft = 'python'
+hook_add = '''
+    let g:vim_isort_python_version = 'python3'
+    function! Isort()
+        call Preserve(':Isort')
+    endfunction
+    autocmd BufWrite *.py :call Isort()
 '''

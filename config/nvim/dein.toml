@@ -7,54 +7,54 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 
-[[plugins]]
-repo = 'Shougo/neocomplete'
-if = 'has("lua")'
-on_i = 1
-hook_add = '''
-  " 最初の候補がデフォで選択されないようにする
-  set completeopt+=noinsert
-  " 起動時に有効化
-  let g:neocomplete#enable_at_startup = 1
-  " " 自動で補完候補を出す
-  let g:neocomplete#disable_auto_complete = 0
-  " メニューの一番目を自動選択
-  let g:neocomplete#enable_auto_select = 1
-  let g:neocomplete#keyword_patterns = get(g:, 'neocomplete#keyword_pattern', {})
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-  " ログファイルは補完を停止
-  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
-  " " 大文字小文字とかあいまい検索とか
-  let g:neocomplete#enable_ignore_case = 1
-  let g:neocomplete#enable_smart_case  = 1
-  let g:neocomplete#enable_fuzzy_completion = 1
-  " Enable omni completion.
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-  let g:neocomplete#force_omni_input_patterns = get(g:, 'neocomplete#force_omni_input_patterns', {})
-  let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
-  let g:neocomplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  let g:neocomplete#delimiter_patterns = get(g:, 'neocomplete#delimiter_patterns', {})
-  let g:neocomplete#delimiter_patterns.ruby = ['::']
-  let g:neocomplete#same_filetypes = get(g:, 'neocomplete#same_filetypes', {})
-  let g:neocomplete#same_filetypes.ruby = 'eruby'
-  " KeyMaps
-  " Tabでいい感じに補完
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " Enterで確定（確定と同時に改行しない）
-  inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
-'''
-hook_post_source = '''
-  " neco-look を連携させる（カスタムソース追加＆text_mode_filetypesで有効化したいftリストの設定が必要）
-  call neocomplete#custom#source('look', 'min_pattern_length', 1)
-  let g:neocomplete#text_mode_filetypes = get(g:, 'neocomplete#text_mode_filetypes', {})
-  for t in [ 'rst', 'markdown', 'gitrebase', 'gitcommit', 'vcs-commit', 'hybrid', 'text', 'help', 'tex' ]
-    let g:neocomplete#text_mode_filetypes[t] = 1
-  endfor
-'''
+# [[plugins]]
+# repo = 'Shougo/neocomplete'
+# if = 'has("lua")'
+# on_i = 1
+# hook_add = '''
+#   " 最初の候補がデフォで選択されないようにする
+#   set completeopt+=noinsert
+#   " 起動時に有効化
+#   let g:neocomplete#enable_at_startup = 1
+#   " " 自動で補完候補を出す
+#   let g:neocomplete#disable_auto_complete = 0
+#   " メニューの一番目を自動選択
+#   let g:neocomplete#enable_auto_select = 1
+#   let g:neocomplete#keyword_patterns = get(g:, 'neocomplete#keyword_pattern', {})
+#   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+#   " ログファイルは補完を停止
+#   let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
+#   " " 大文字小文字とかあいまい検索とか
+#   let g:neocomplete#enable_ignore_case = 1
+#   let g:neocomplete#enable_smart_case  = 1
+#   let g:neocomplete#enable_fuzzy_completion = 1
+#   " Enable omni completion.
+#   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+#   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+#   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+#   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+#   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+#   let g:neocomplete#force_omni_input_patterns = get(g:, 'neocomplete#force_omni_input_patterns', {})
+#   let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'
+#   let g:neocomplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+#   let g:neocomplete#delimiter_patterns = get(g:, 'neocomplete#delimiter_patterns', {})
+#   let g:neocomplete#delimiter_patterns.ruby = ['::']
+#   let g:neocomplete#same_filetypes = get(g:, 'neocomplete#same_filetypes', {})
+#   let g:neocomplete#same_filetypes.ruby = 'eruby'
+#   " KeyMaps
+#   " Tabでいい感じに補完
+#   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+#   " Enterで確定（確定と同時に改行しない）
+#   inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
+# '''
+# hook_post_source = '''
+#   " neco-look を連携させる（カスタムソース追加＆text_mode_filetypesで有効化したいftリストの設定が必要）
+#   call neocomplete#custom#source('look', 'min_pattern_length', 1)
+#   let g:neocomplete#text_mode_filetypes = get(g:, 'neocomplete#text_mode_filetypes', {})
+#   for t in [ 'rst', 'markdown', 'gitrebase', 'gitcommit', 'vcs-commit', 'hybrid', 'text', 'help', 'tex' ]
+#     let g:neocomplete#text_mode_filetypes[t] = 1
+#   endfor
+# '''
 
 [[plugins]] # コード補完
 repo = 'Shougo/deoplete.nvim'
@@ -277,25 +277,25 @@ hook_add = '''
 [[plugins]] # g> g< gs で引数の位置交換を簡単に行う
 repo = 'machakann/vim-swap'
 
-[[plugins]] # 今時のSyntastic/Neomake的なやつ（非同期で軽い）
-repo = 'w0rp/ale'
-hook_add = '''
-  let g:ale_sign_error = 'E'
-  let g:ale_sign_warning = 'W'
-  let g:ale_statusline_format = ['E%d', 'W%d', '']
-  " use quickfix instead of loclist
-  let g:ale_set_loclist = 0
-  let g:ale_set_quickfix = 1
-  let g:ale_open_list = 1
-  let g:ale_keep_list_window_open = 0
-  " TODO: hotfix for ale_open_list bug https://github.com/w0rp/ale/issues/272
-  if 1
-    let g:ale_lint_on_save = 1
-    let g:ale_lint_on_enter = 0
-  endif
-  " shellcheck ignores
-  let g:ale_linters_sh_shellckeck_exclusions = 'SCxxxx'
-'''
+# [[plugins]] # 今時のSyntastic/Neomake的なやつ（非同期で軽い）
+# repo = 'w0rp/ale'
+# hook_add = '''
+#   let g:ale_sign_error = 'E'
+#   let g:ale_sign_warning = 'W'
+#   let g:ale_statusline_format = ['E%d', 'W%d', '']
+#   " use quickfix instead of loclist
+#   let g:ale_set_loclist = 0
+#   let g:ale_set_quickfix = 1
+#   let g:ale_open_list = 1
+#   let g:ale_keep_list_window_open = 0
+#   " TODO: hotfix for ale_open_list bug https://github.com/w0rp/ale/issues/272
+#   if 1
+#     let g:ale_lint_on_save = 1
+#     let g:ale_lint_on_enter = 0
+#   endif
+#   " shellcheck ignores
+#   let g:ale_linters_sh_shellckeck_exclusions = 'SCxxxx'
+# '''
 
 #  [[plugins]]
 #  repo = 'davidhalter/jedi-vim'
@@ -312,3 +312,48 @@ hook_add = '''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'benjie/neomake-local-eslint.vim'
+
+
+[[plugins]]
+repo = 'neomake/neomake'
+hook_add = '''
+autocmd! BufWritePost * Neomake " 保存時に実行する
+    let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
+    let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
+'''
+
+[[plugins]]
+repo = 'ujihisa/repl.vim'
+depends = ['vimshell.vim', 'vimproc.vim']
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+
+'''

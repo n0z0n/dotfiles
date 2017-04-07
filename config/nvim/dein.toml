@@ -324,8 +324,8 @@ repo = 'neomake/neomake'
 hook_add = '''
     autocmd! BufWritePost * Neomake " 保存時に実行する
     let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
-    let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
-    let g:neomake_open_list = 1
+    let g:neomake_warning_sign = {'text': '||',  'texthl': 'Todo'}
+    let g:neomake_open_list = 0
     let g:neomake_python_enabled_makers = ['flake8']
 '''
 

@@ -1,0 +1,9 @@
+[submodule ".config/fisherman/budspencer"]
+	path = .config/fisherman/budspencer
+	url = https://github.com/oh-my-fish/theme-budspencer
+[submodule ".config/fisherman/fzf"]
+	path = .config/fisherman/fzf
+	url = https://github.com/fisherman/fzf
+[submodule ".config/fisherman/ghq"]
+	path = .config/fisherman/ghq
+	url = https://github.com/decors/fish-ghq

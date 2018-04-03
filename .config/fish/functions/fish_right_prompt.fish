@@ -1,0 +1,1 @@
+/Users/nozomi/.config/fisherman/budspencer/fish_right_prompt.fish

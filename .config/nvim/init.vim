@@ -3,6 +3,11 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 

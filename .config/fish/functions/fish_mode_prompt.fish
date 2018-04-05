@@ -1,1 +1,0 @@
-/Users/nozomi/.config/fisherman/budspencer/fish_mode_prompt.fish

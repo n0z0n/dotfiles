@@ -1,1 +1,0 @@
-/Users/nozomi/.config/fisherman/ghq/completions/ghq.fish

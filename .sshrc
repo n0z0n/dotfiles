@@ -1,0 +1,29 @@
+alias ll='ls -l'
+# export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.config/nvim/init.vim' | source \$MYVIMRC"
+
+mkdir -p ~/.config
+ln -fs $SSHHOME/.sshrc.d/.config/nvim ~/.config/nvim
+ln -fs $SSHHOME/.sshrc.d/.editorconfig ~/.editorconfig
+ln -fs $SSHHOME/.sshrc.d/.gitconfig ~/.gitconfig
+
+
+alias foo='echo I work with tmux, too'
+
+tmuxrc() {
+    local TMUXDIR=/tmp/russelltmuxserver
+    if ! [ -d $TMUXDIR ]; then
+        rm -rf $TMUXDIR
+        mkdir -p $TMUXDIR
+    fi
+    rm -rf $TMUXDIR/.sshrc.d
+    cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
+    SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc /usr/bin/tmux -S $TMUXDIR/tmuxserver $@
+}
+export SHELL=`which bash`
+
+BREWHOME="/home/linuxbrew"
+export PATH="$BREWHOME/.linuxbrew/bin:$PATH"
+export MANPATH="$BREWHOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$BREWHOME/.linuxbrew/share/info:$INFOPATH"
+
+alias vim='nvim'

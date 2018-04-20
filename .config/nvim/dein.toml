@@ -53,3 +53,6 @@ repo = 'Yggdroot/indentLine'
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'

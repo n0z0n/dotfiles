@@ -1,1 +1,0 @@
-/Users/nozomi/.config/fisherman/fzf/functions/__fzfcmd.fish

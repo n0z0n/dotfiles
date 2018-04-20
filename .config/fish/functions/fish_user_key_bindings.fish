@@ -32,18 +32,4 @@ function fish_user_key_bindings
         bind -M insert \cg '__ghq_crtl_g'
     end
     ### ghq ###
-    ### budspencer ###
-    set fish_key_bindings fish_vi_key_bindings
-    bind '
-bind -M visual '
-    bind ' ' __budspencer_toggle_pwd
-    bind -M visual ' ' __budspencer_toggle_pwd
-    bind L __budspencer_cd_next
-    bind H __budspencer_cd_prev
-    bind m mark
-    bind M unmark
-    bind . __budspencer_edit_commandline
-    bind -M insert \r __budspencer_preexec
-    bind \r __budspencer_preexec
-    ### budspencer ###
 end
